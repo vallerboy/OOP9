@@ -1,5 +1,8 @@
 package pl.oskarpolak.phonebook.controllers;
 
+import pl.oskarpolak.phonebook.models.Contact;
+import pl.oskarpolak.phonebook.models.services.ContactService;
+import pl.oskarpolak.phonebook.models.services.impl.ContactServiceImpl;
 import pl.oskarpolak.phonebook.views.MenuView;
 import java.util.Scanner;
 
@@ -7,11 +10,13 @@ public class PhoneController {
 
     private MenuView menuView;
     private Scanner scanner;
+    private ContactService contactService;
 
 
     public PhoneController() {
         menuView = new MenuView();
         scanner = new Scanner(System.in);
+        contactService = new ContactServiceImpl();
     }
 
     public void start() {
@@ -27,17 +32,17 @@ public class PhoneController {
     private void parseAnswer(String answer) {
         switch (answer){
             case "1": {
-                getContactFromUser();
+                contactService.addContact(getContactFromUser());
                 break;
             }
             case "2": {
-
+                
                 break;
             }
         }
     }
 
-    private void getContactFromUser() {
+    private Contact getContactFromUser() {
         menuView.askForNumber();
         String number = scanner.nextLine();
 
@@ -47,6 +52,6 @@ public class PhoneController {
         menuView.askForSurname();
         String surname = scanner.nextLine();
 
-
+        return new Contact(name, surname, number);
     }
 }
