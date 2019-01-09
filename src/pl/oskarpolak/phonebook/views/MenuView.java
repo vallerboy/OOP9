@@ -1,5 +1,9 @@
 package pl.oskarpolak.phonebook.views;
 
+import pl.oskarpolak.phonebook.models.Contact;
+
+import java.util.List;
+
 public class MenuView {
 
     public void printMenu() {
@@ -22,5 +26,11 @@ public class MenuView {
 
     public void askForSurname(){
         System.out.print("Podaj nazwisko: ");
+    }
+
+    public void printContactList(List<Contact> contactList){
+        for (Contact contact : contactList) {
+            System.out.println(contact.getName() + " " + contact.getSurname() + ": " + contact.getNumber());
+        }
     }
 }

@@ -36,7 +36,7 @@ public class PhoneController {
                 break;
             }
             case "2": {
-                
+                menuView.printContactList(contactService.getAllContacts());
                 break;
             }
         }
